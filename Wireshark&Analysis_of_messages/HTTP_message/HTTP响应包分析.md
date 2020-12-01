@@ -87,7 +87,7 @@ TCP首部长度为20字节，组成的TCP分组数据总长度为2801字节。
 IP首部为
 
 ```
-    0100 .... = Version: 4                                           //版本
+    0100 .... = Version: 4                                           //IP协议的版本
     .... 0101 = Header Length: 20 bytes (5)                          //首部长度
     Differentiated Services Field: 0x00 (DSCP: CS0, ECN: Not-ECT)    //区分服务
         0000 00.. = Differentiated Services Codepoint: Default (0)
@@ -96,11 +96,11 @@ IP首部为
     Identification: 0xfef8 (65272)                                   //标识，使得相同标识字段的数据报片能正确的重装为原来的数据报
     Flags: 0x0000                                                    //标志
         0... .... .... .... = Reserved bit: Not set                  //保留位
-        .0.. .... .... .... = Don't fragment: Not set                //DF=0表示允许分片
-        ..0. .... .... .... = More fragments: Not set                //MF=0表示这是数据报片中的最后一片
+        .0.. .... .... .... = Don't fragment: Not set                //DF=0表示允许分片，DF=1表示不能分片
+        ..0. .... .... .... = More fragments: Not set                //MF=0表示这是数据报片中的最后一片，MF=1表示后面还有分片
     Fragment offset: 0                                               //片偏移，表明该数据报片在在原分组中的相对位置
     Time to live: 128                                                //生存时间TTL，TTL=0时路由器会丢弃该数据报
-    Protocol: TCP (6)                                                //协议
+    Protocol: TCP (6)                                                //此包内封装的上层协议为TCP
     Header checksum: 0x6487                                          //首部校验和
     Source: 220.181.38.149                                           //源IP地址
     Destination: 192.168.8.128                                       //目的IP地址
